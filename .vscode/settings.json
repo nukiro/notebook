@@ -1,0 +1,11 @@
+{
+  "files.associations": {
+    "*.h": "c"
+  },
+  "files.readonlyInclude": {
+    "*log": true
+  },
+  "files.exclude": {
+    "**/*.o": true
+  }
+}

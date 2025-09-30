@@ -1,0 +1,15 @@
+{
+  "configurations": [
+    {
+      "name": "Linux",
+      "includePath": [
+        "/usr/local/include", // for libraries
+        "${workspaceFolder}/**/include"
+      ],
+      "defines": ["true=1", "false=0", "TEST", "DEBUG"],
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu23"
+    }
+  ],
+  "version": 4
+}
