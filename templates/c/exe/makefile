@@ -9,21 +9,29 @@ OBJ = $(SRC:.c=.o)
 all: bin main run
 
 bin:
-	mkdir bin
+	@mkdir bin
 
 main: $(OBJ)
-	$(CC) -std=$(STD) $(CFLAGS) $(DFLAGS) $(OBJ) -o bin/main
+	@$(CC) -std=$(STD) $(CFLAGS) $(DFLAGS) $(OBJ) -o bin/main
 
 run:
 	@echo "-------"
 	@./bin/main
 
-source: $(SRC)
-	@printf '%s\n' $?
+s:
+	@find src -name '*.c'
 
+h:
+	@find include -name '*.h'
+
+o:
+	@find src -name '*.o'
 
 %.o: %.c
-	$(CC) -std=$(STD) $(CFLAGS) $(DFLAGS) -I./include -c $< -o $@
+	@echo "Compiling: $<"
+	@$(CC) -std=$(STD) $(CFLAGS) $(DFLAGS) -I./include -c $< -o $@
 
 clean:
-	rm -f bin/main $(OBJ)
+	@echo "Removing file in 'bin' and object files."
+	@rm -f bin/main $(OBJ)
+	@echo "Done!"
