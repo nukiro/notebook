@@ -15,11 +15,6 @@ fn main() {
         }
     };
 
-    println!(
-        "Searching for '{}' in file '{}'",
-        config.query, config.filename
-    );
-
     if let Err(e) = grep::run(config) {
         eprintln!("Application error: {}", e);
         process::exit(1);
