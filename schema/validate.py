@@ -3,6 +3,11 @@ from enum import Enum
 import json
 
 
+class FieldType(Enum):
+    STRING = "string"
+    INTEGER = "integer"
+
+
 class ValidationErrorType(Enum):
     INVALID_JSON = "invalid json"
     MISSING_FIELD = "field is required but missing"
@@ -78,6 +83,21 @@ def validate(schema: Schema, payload: str) -> list[ValidationError]:
                     field_name=field_name,
                     error_type=ValidationErrorType.MISSING_FIELD,
                     message=f"'{field_name}' is required but missing",
+                )
+            )
+            continue
+
+        # Check for nullability
+        if (
+            field_def.nullable is False
+            and field_name in data
+            and data[field_name] is None
+        ):
+            errors.append(
+                ValidationError(
+                    field_name=field_name,
+                    error_type=ValidationErrorType.NULLABLE_FIELD,
+                    message=f"'{field_name}' is not nullable but value is null",
                 )
             )
             continue

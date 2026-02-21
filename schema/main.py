@@ -20,6 +20,12 @@ user.add_field(
         rules=[{"min_length": 3}, {"max_length": 50}],
     ),
 )
+user.add_field(
+    name="age",
+    definition=FieldDefinition(
+        field_type="integer", required=False, nullable=True, rules=[{"min_value": 0}]
+    ),
+)
 
 if __name__ == "__main__":
     data = [
